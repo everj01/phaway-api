@@ -46,3 +46,6 @@ pnpm prisma studio       # GUI de la base de datos
 pnpm prisma migrate dev  # nueva migración
 pnpm prisma generate     # regenerar cliente Prisma
 ```
+
+## Apuntes de aprendizaje
+Bitácora informal de cosas debuggeadas/aprendidas durante el desarrollo (no instrucciones, solo notas): ver [`APUNTES.md`](./APUNTES.md).
