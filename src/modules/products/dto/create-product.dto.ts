@@ -16,4 +16,12 @@ export class CreateProductDto {
     @IsBoolean()
     @IsOptional()
     available?: boolean;
+
+    @IsString()
+    @IsNotEmpty()
+    categoryUuid!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    restaurantUuid!: string;
 }

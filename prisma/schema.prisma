@@ -14,18 +14,57 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
-model Product {
-  id Int @id @default(autoincrement())
-  uuid String @default(uuid()) @unique
-  name String
-  description String?
-  price Decimal
-  available Boolean  @default(true)
+//---------------------------------------------------------
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime?
+model Product {
+  id           Int        @id @default(autoincrement())
+  uuid         String     @unique @default(uuid())
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  name         String
+  description  String?
+  price        Decimal    @db.Decimal(10, 2)
+  available    Boolean    @default(true)
+  categoryId   Int
+  category     Category   @relation(fields: [categoryId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+}
+
+//---------------------------------------------------------
+
+model Category {
+  id           Int        @id @default(autoincrement())
+  uuid         String     @unique @default(uuid())
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  name         String
+  products     Product[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+}
+
+//---------------------------------------------------------
+
+model Restaurant {
+  id         Int       @id @default(autoincrement())
+  uuid       String    @unique @default(uuid())
+  name       String
+  legalName  String
+  taxId      String
+  phone      String?
+  email      String?
+  address    String?
+  postalCode String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  products   Product[]
+  categories Category[]
 }

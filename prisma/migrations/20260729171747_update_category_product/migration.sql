@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "Category" ADD COLUMN     "restaurantId" INTEGER;
+
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "restaurantId" INTEGER;
+
+-- AddForeignKey
+ALTER TABLE "Product" ADD CONSTRAINT "Product_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Category" ADD CONSTRAINT "Category_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE SET NULL ON UPDATE CASCADE;
