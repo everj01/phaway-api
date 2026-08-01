@@ -7,9 +7,16 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ProductsModule } from './modules/products/products.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { RestaurantsModule } from './modules/restaurants/restaurants.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
-  imports: [PrismaModule, ProductsModule, CategoriesModule, RestaurantsModule],
+  imports: [
+    PrismaModule,
+    ProductsModule,
+    CategoriesModule,
+    RestaurantsModule,
+    UsersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
