@@ -1,11 +1,17 @@
-import { Controller, Body, Post } from '@nestjs/common';
-import { UnauthorizedException } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
+import { 
+  Controller, 
+  Body, 
+  Post, 
+  UnauthorizedException
+} from '@nestjs/common';
+import { LoginDto } from './dto/login.dto'; // DTO to receive login credentials
+import { AuthService } from './auth.service'; // Import AuthService dependency
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService
+  ) {}
 
   @Post('login')
   async login(@Body() dto: LoginDto) {

@@ -1,4 +1,4 @@
-import 'dotenv/config';// NO OLVIDAR! COLOCAR ESTO
+import 'dotenv/config'; // Environment variables
 
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';

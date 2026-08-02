@@ -1,17 +1,15 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
 
-import { UsersController } from "./users.controller";
-import { UsersService } from "./users.service";
-import { PrismaModule } from "src/prisma/prisma.module";
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+import { PrismaModule } from 'src/prisma/prisma.module';
 
-import { RestaurantsModule } from "../restaurants/restaurants.module";
+import { RestaurantsModule } from '../restaurants/restaurants.module';
 
 @Module({
-    imports: [PrismaModule, RestaurantsModule],
-    controllers: [UsersController],
-    providers: [UsersService],
-    exports: [UsersService]
+  imports: [PrismaModule, RestaurantsModule],
+  controllers: [UsersController],
+  providers: [UsersService],
+  exports: [UsersService],
 })
-export class UsersModule {
-
-}
+export class UsersModule {}
