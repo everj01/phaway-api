@@ -14,6 +14,9 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
+import { UserRole } from 'generated/prisma/enums';
 
 @Controller('products')
 export class ProductsController {
@@ -31,7 +34,8 @@ export class ProductsController {
     return this.products.findOne(uuid);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.OWNER, UserRole.STAFF)
   @Get()
   findAll() {
     return this.products.findAll();
