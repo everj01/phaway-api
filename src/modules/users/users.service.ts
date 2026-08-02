@@ -5,7 +5,6 @@ import { RestaurantsService } from "../restaurants/restaurants.service";
 
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { ValidateUserDto } from "./dto/validate-user.dto";
 
 import * as bcrypt from "bcryptjs"; // Para hashear claves
 
@@ -90,15 +89,9 @@ export class UsersService {
 
     async findOneXEmail (email: string){
         return this.prisma.user.findUnique({
-            where: { email },
+            where: { email, deletedAt: null },
         });
     }
 
-    async validate(email: string, password: string){
-        const user = await this.findOneXEmail(email); // reutilizamos esto
-        if (!user) return false;
-        const hashedPassword = user.password; 
-        const validateUser = await bcrypt.compare(password, hashedPassword); // validar clave del usuario
-        return validateUser;
-    }
+    
 }

@@ -3,11 +3,7 @@ import { Controller, Body, Post, Get, Patch, Delete, Param } from "@nestjs/commo
 import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { ValidateUserDto } from "./dto/validate-user.dto";
-
 import { UserDefaultEntity } from "./entities/user-default.entity";
-
-import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 
 @Controller('users')
 export class UsersController {
@@ -39,16 +35,5 @@ export class UsersController {
     remove(@Param('uuid') uuid: string){
         return this.users.remove(uuid);
     }
-
-    //Validar
-    @Post('validate')
-    async validate(@Body() dto: ValidateUserDto){
-        const validateUser: boolean = await this.users.validate(dto.email, dto.password);
-        if(!validateUser) throw new UnauthorizedException(`Acceso denegado`);
-        return {
-            "status" : "Acceso Permitido"
-        }
-        
-    }
-    
+  
 }

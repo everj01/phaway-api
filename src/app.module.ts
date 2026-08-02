@@ -8,6 +8,9 @@ import { ProductsModule } from './modules/products/products.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { RestaurantsModule } from './modules/restaurants/restaurants.module';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
+
+
 
 @Module({
   imports: [
@@ -16,6 +19,7 @@ import { UsersModule } from './modules/users/users.module';
     CategoriesModule,
     RestaurantsModule,
     UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

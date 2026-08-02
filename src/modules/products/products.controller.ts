@@ -2,6 +2,8 @@ import { Controller, Body, Post, Get, Patch, Delete, Param } from "@nestjs/commo
 import { ProductsService } from "./products.service";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
+import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+import { UseGuards } from "@nestjs/common";
 
 @Controller('products')
 export class ProductsController {
@@ -17,6 +19,7 @@ export class ProductsController {
         return this.products.findOne(uuid);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get()
     findAll(){
         return this.products.findAll();

@@ -10,6 +10,7 @@ import { RestaurantsModule } from "../restaurants/restaurants.module";
     imports: [PrismaModule, RestaurantsModule],
     controllers: [UsersController],
     providers: [UsersService],
+    exports: [UsersService]
 })
 export class UsersModule {
 
